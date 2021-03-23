@@ -20,7 +20,13 @@ class UserList extends StatelessWidget {
              icon: Icon(Icons.add, size: 32,),
               color: Colors.white,
               padding: const EdgeInsets.only(right: 40.0),
-              onPressed: () {}),
+              onPressed: () {
+               users.put(User(
+                 name: 'Lone',
+                 email: 'teste2teste.com',
+                 avatarUrl: ''
+               ));
+              }),
         ],
       ),
       body: ListView.builder(
