@@ -1,5 +1,6 @@
 import 'package:exemplo/models/user.dart';
 import 'package:exemplo/provider/users.dart';
+import 'package:exemplo/routes/app_routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,11 +22,9 @@ class UserList extends StatelessWidget {
               color: Colors.white,
               padding: const EdgeInsets.only(right: 40.0),
               onPressed: () {
-               users.put(User(
-                 name: 'Lone',
-                 email: 'teste2teste.com',
-                 avatarUrl: ''
-               ));
+                Navigator.of(context).pushNamed(
+                  AppRoutes.USER_FORM
+                );
               }),
         ],
       ),

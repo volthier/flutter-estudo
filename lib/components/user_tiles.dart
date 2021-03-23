@@ -1,9 +1,13 @@
+import 'package:exemplo/provider/users.dart';
+import 'package:exemplo/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../models/user.dart';
 
 class UserTile extends StatelessWidget {
   final User user;
+
   const UserTile(this.user);
 
   @override
@@ -26,11 +30,49 @@ class UserTile extends StatelessWidget {
               IconButton(
                   icon: Icon(Icons.edit),
                   color: Colors.orange,
-                  onPressed: () {}),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(
+                      AppRoutes.USER_FORM,
+                      arguments: user,
+                    );
+                  }),
               IconButton(
                   icon: Icon(Icons.delete),
                   color: Colors.red,
-                  onPressed: () {}),
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (ctx) => AlertDialog(
+                        title: Text('Excluir usuário'),
+                        content: Text('Confirma a exclusao?'),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop(false);
+                            },
+                            child: Text('Não'),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              //
+                              // O metodo do provider abaixo será implementado usando o them
+                              // declarando no pop false/true
+                              // Provider.of<Users>(context, listen: false)
+                              //     .remove(user);
+
+                              Navigator.of(context).pop(true);
+                            },
+                            child: Text('Sim'),
+                          ),
+                        ],
+                      ),
+                    ).then((confirmed) => {
+                      if(confirmed){
+                        Provider.of<Users>(context, listen: false)
+                            .remove(user)
+                      }
+                    });
+                  }),
             ],
           ),
         ));

@@ -1,1 +1,4 @@
-// https://youtu.be/ViahqKZzZ7Y?t=2820
+class AppRoutes {
+  static const HOME ='/';
+  static const USER_FORM ='/user-form';
+}

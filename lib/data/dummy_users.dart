@@ -4,7 +4,7 @@ const USER_DUMMY = {
   '1': const User(
       id: '1', name: 'Maria', email: 'estuto@e.assim.com', avatarUrl: ''),
   '2': const User(
-      id: '1',
+      id: '2',
       name: 'Mauuu',
       email: 'estuto@eassim.com',
       avatarUrl:
