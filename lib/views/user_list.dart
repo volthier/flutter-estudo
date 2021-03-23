@@ -13,10 +13,14 @@ class UserList extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('Death note'),
         actions: <Widget>[
           IconButton(
-              color: Colors.white, icon: Icon(Icons.add), onPressed: () {}),
+             icon: Icon(Icons.add, size: 32,),
+              color: Colors.white,
+              padding: const EdgeInsets.only(right: 40.0),
+              onPressed: () {}),
         ],
       ),
       body: ListView.builder(
