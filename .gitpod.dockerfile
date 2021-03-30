@@ -1,4 +1,4 @@
-FROM gitpod/workspace-full:latest
+FROM gitpod/workspace-full-vnc
 
 ENV ANDROID_HOME=/home/gitpod/android-sdk \
     FLUTTER_HOME=/home/gitpod/flutter
@@ -17,6 +17,8 @@ RUN curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - &
     apt-get -y autoremove && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/*;
+
+RUN apt clean -qq
 
 USER gitpod
 
@@ -39,3 +41,8 @@ RUN mkdir -p /home/gitpod/android-sdk && \
     rm -f sdk-tools-linux-4333796.zip
     
 ENV PATH "$PATH:/usr/lib/dart/bin:$FLUTTER_HOME/bin:$ANDROID_HOME/bin"
+
+RUN chmod -R 777 ${ANDROID_HOME}
+
+RUN bash -c "source ~/.sdkman/bin/sdkman-init.sh && \
+                sdk install java 8.0.232-open"
