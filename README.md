@@ -17,6 +17,11 @@ samples, guidance on mobile development, and a full API reference.
 
 ### RUN ON GIT POD
 
+You will need to run
+
+$ yes | sdkmanager --licenses
+after the workspace loads.
+
 executar o comando 
 
 flutter run -d web-server --web-port=8080 --web-hostname=0.0.0.0
