@@ -2,7 +2,7 @@ image:
   file: .gitpod.dockerfile
 github:
   prebuilds:
-    master: true
+    master: false
     branches: false
     pullRequests: true
     pullRequestsFromForks: false
@@ -11,13 +11,29 @@ github:
     addBadge: false
     addLabel: false
 tasks:
-- command: |
+- before: |
+    export PATH=/usr/lib/dart/bin:$FLUTTER_HOME/bin:$ANDROID_HOME/bin:$ANDROID_HOME/platform-tools:$PATH
     mkdir -p /home/gitpod/.android
     touch /home/gitpod/.android/repositories.cfg
-    export PATH=/usr/lib/dart/bin:$FLUTTER_HOME/bin:$ANDROID_HOME/bin:$PATH
+  init: |
+    echo "Installing Flutter SDK..."
     /home/gitpod/android-sdk/tools/bin/sdkmanager "platform-tools" "platforms;android-28" "build-tools;28.0.3"
+    /workspace/android-sdk/tools/bin/sdkmanager "platform-tools" "platforms;android-28" "build-tools;28.0.3"
+    echo "Init Flutter..."
+    cd /workspace/ha_client
+    flutter upgrade
+    flutter doctor --android-licenses
     flutter pub get
+  command: |
+    flutter pub upgrade
+    echo "Ready to go!"
+    flutter doctor
+ports:
+  - port: 9100
+    onOpen: ignore  
+  - port: 5037
+    onOpen: ignore
 vscode:
   extensions:
+    - Dart-Code.dart-code@3.5.0-beta.1:Wg2nTABftVR/Dry4tqeY1w==
     - Dart-Code.flutter@3.5.0:/kOacEWdiDRLyN/idUiM4A==
-    - dart-code.dart-code@3.20.1:gKwMOzlkrgxrb7aPrMdQ8w==
