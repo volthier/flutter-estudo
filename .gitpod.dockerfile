@@ -44,4 +44,6 @@ ENV PATH "$PATH:/usr/lib/dart/bin:$FLUTTER_HOME/bin:$ANDROID_HOME/bin:$ANDROID_H
 
 RUN chmod -R 777 ${ANDROID_HOME}
 
+RUN bash -c "source ~/.sdkman/bin/sdkman-init.sh && \
+                sdk install java 8.0.232-open"
 
