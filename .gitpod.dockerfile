@@ -40,9 +40,8 @@ RUN mkdir -p /home/gitpod/android-sdk && \
     unzip sdk-tools-linux-4333796.zip && \
     rm -f sdk-tools-linux-4333796.zip
     
-ENV PATH "$PATH:/usr/lib/dart/bin:$FLUTTER_HOME/bin:$ANDROID_HOME/bin"
+ENV PATH "$PATH:/usr/lib/dart/bin:$FLUTTER_HOME/bin:$ANDROID_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools"
 
 RUN chmod -R 777 ${ANDROID_HOME}
 
-RUN bash -c "source ~/.sdkman/bin/sdkman-init.sh && \
-                sdk install java 8.0.232-open"
+
