@@ -8,11 +8,11 @@ tasks:
       touch /home/gitpod/.android/repositories.cfg
     init: |
       echo "Installing Flutter SDK..."
-      /home/gitpod/android-sdk/tools/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
-      /workspace/android-sdk/tools/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
+      /home/gitpod/android-sdk/tools/bin/sdkmanager 'platform-tools' 'platforms;android-30' 'build-tools;30.0.3'
+      /workspace/android-sdk/tools/bin/sdkmanager 'platform-tools' 'platforms;android-30' 'build-tools;30.0.3'
       echo "Init Flutter..."
       cd /workspace/ha_client
-      flutter upgrade
+      'yes | flutter upgrade'
       flutter doctor --android-licenses
       flutter pub get
     command: |
