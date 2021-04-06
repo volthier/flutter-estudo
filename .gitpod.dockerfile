@@ -53,5 +53,7 @@ ENV ANDROID_HOME=/workspace/android-sdk \
     FLUTTER_ROOT=/workspace/flutter \
     FLUTTER_HOME=/workspace/flutter
 
+ENV PATH "$PATH:/usr/lib/dart/bin:$FLUTTER_HOME/bin:$FLUTTER_ROOT/bin:$ANDROID_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools"
+
 RUN bash -c ". /home/gitpod/.sdkman/bin/sdkman-init.sh \
              && sdk install java 8.0.282.j9-adpt"
