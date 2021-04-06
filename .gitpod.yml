@@ -1,66 +1,23 @@
-#image:
-#  file: .gitpod.dockerfile
-#github:
-#  prebuilds:
-#    master: false
-#    branches: false
-#    pullRequests: true
-#    pullRequestsFromForks: false
-#    addCheck: false
-#    addComment: true
-#    addBadge: false
-#    addLabel: false
-#tasks:
-#- before: |
-#    export PATH=/usr/lib/dart/bin:$FLUTTER_HOME/bin:$ANDROID_HOME/bin:$ANDROID_HOME/platform-tools:$PATH
-#    mkdir -p /home/gitpod/.android
-#    touch /home/gitpod/.android/repositories.cfg
-#  init: |
-#    echo "Installing Flutter SDK..."
-#    /home/gitpod/android-sdk/tools/bin/sdkmanager "platform-tools" "platforms;android-28" "build-tools;28.0.3"
-#    /workspace/android-sdk/tools/bin/sdkmanager "platform-tools" "platforms;android-28" "build-tools;28.0.3"
-#    echo "Init Flutter..."
-#    cd /workspace/ha_client
-#    flutter upgrade
-#    flutter doctor --android-licenses
-#    flutter pub get
-#  command: |
-#    flutter pub upgrade
-#    echo "Ready to go!"
-#    flutter doctor
-#ports:
-#  - port: 9100
-#    onOpen: ignore
-#  - port: 5037
-#    onOpen: ignore
-#vscode:
-#  extensions:
-#    - Dart-Code.dart-code@3.5.0-beta.1:Wg2nTABftVR/Dry4tqeY1w==
-#    - Dart-Code.flutter@3.5.0:/kOacEWdiDRLyN/idUiM4A==
-
 image:
   file: .gitpod.dockerfile
 
 tasks:
-  - before: |
-      export PATH=$FLUTTER_HOME/bin:$ANDROID_HOME/bin:$ANDROID_HOME/platform-tools:$PATH
-      mkdir -p /home/gitpod/.android
-      touch /home/gitpod/.android/repositories.cfg
-    init: |
-      echo "Installing Flutter SDK..."
-      cd /workspace && wget -qO flutter_sdk.tar.xz https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v1.12.13+hotfix.7-stable.tar.xz && tar -xf flutter_sdk.tar.xz && rm -f flutter_sdk.tar.xz
-      echo "Installing Android SDK..."
-      mkdir -p /workspace/android-sdk && cd /workspace/android-sdk && wget https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip && unzip commandlinetools-linux-6858069_latest.zip && rm -f commandlinetools-linux-6858069_latest.zip
-      /workspace/android-sdk/tools/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
-      echo "Init Flutter..."
-      cd /workspace/ha_client
-      flutter upgrade
-      flutter doctor --android-licenses
-      flutter pub get
-    command: |
-#      flutter pub upgrade
-      echo "Ready to go!"
-      flutter doctor
+- before: |
+    export PATH=/usr/lib/dart/bin:$FLUTTER_HOME/bin:$ANDROID_HOME/bin:$ANDROID_HOME/platform-tools:$PATH
+    mkdir -p /home/gitpod/.android
+    touch /home/gitpod/.android/repositories.cfg
+  init: |
+    echo "Installing Flutter SDK..."
+    /home/gitpod/android-sdk/tools/bin/sdkmanager "platform-tools" "platforms;android-28" "build-tools;28.0.3"
+    /workspace/android-sdk/tools/bin/sdkmanager "platform-tools" "platforms;android-28" "build-tools;28.0.3"
+    echo "Init Flutter..."
+    cd /workspace/ha_client
+    flutter upgrade
+    flutter doctor --android-licenses
+    flutter pub get
+  command: |
+    echo "Ready to go!"
+    flutter doctor
 ports:
   - port: 9100
     onOpen: ignore
