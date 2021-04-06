@@ -5,9 +5,20 @@ ENV ANDROID_HOME=/home/gitpod/android-sdk \
 
 USER root
 
+ARG DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update \
     && apt-get install -y openjfx libopenjfx-java matchbox \
     && apt-get clean && rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN true \
+    	&& apt install -y \
+    		novnc \
+    		chromium
+
+ARG DEBIAN_FRONTEND=noninteractive
 
 RUN curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
     curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list && \
