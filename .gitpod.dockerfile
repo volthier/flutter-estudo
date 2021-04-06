@@ -40,7 +40,13 @@ RUN mkdir -p /home/gitpod/android-sdk && \
     unzip sdk-tools-linux-4333796.zip && \
     rm -f sdk-tools-linux-4333796.zip
 
+# Change the PUB_CACHE to /workspace so dependencies are preserved.
+ENV PUB_CACHE=/workspace/.pub_cache
+
 ENV PATH "$PATH:/usr/lib/dart/bin:$FLUTTER_HOME/bin:$ANDROID_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools"
+
+# add executables to PATH
+RUN echo 'export PATH=${FLUTTER_HOME}/bin:${FLUTTER_HOME}/bin/cache/dart-sdk/bin:${PUB_CACHE}/bin:${FLUTTER_HOME}/.pub-cache/bin:$PATH' >>~/.bashrc
 
 RUN chmod -R 777 ${ANDROID_HOME}
 

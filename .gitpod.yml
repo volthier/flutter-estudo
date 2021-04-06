@@ -13,6 +13,7 @@ tasks:
       echo "Init Flutter..."
       cd /workspace/ha_client
       'yes | flutter upgrade'
+      flutter config --enable-web
       flutter doctor --android-licenses
       flutter pub get
     command: |
