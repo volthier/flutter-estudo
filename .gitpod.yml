@@ -2,26 +2,31 @@ image:
   file: .gitpod.dockerfile
 
 tasks:
-- before: |
-    export PATH=/usr/lib/dart/bin:$FLUTTER_HOME/bin:$ANDROID_HOME/bin:$ANDROID_HOME/platform-tools:$PATH
-    mkdir -p /home/gitpod/.android
-    touch /home/gitpod/.android/repositories.cfg
-  init: |
-    echo "Installing Flutter SDK..."
-    /home/gitpod/android-sdk/tools/bin/sdkmanager "platform-tools" "platforms;android-28" "build-tools;28.0.3"
-    /workspace/android-sdk/tools/bin/sdkmanager "platform-tools" "platforms;android-28" "build-tools;28.0.3"
-    echo "Init Flutter..."
-    cd /workspace/ha_client
-    flutter upgrade
-    flutter doctor --android-licenses
-    flutter pub get
-  command: |
-    echo "Ready to go!"
-    flutter doctor
+  - before: |
+      export PATH=/usr/lib/dart/bin:$FLUTTER_HOME/bin:$ANDROID_HOME/bin:$ANDROID_HOME/platform-tools:$PATH
+      mkdir -p /home/gitpod/.android
+      touch /home/gitpod/.android/repositories.cfg
+    init: |
+      echo "Installing Flutter SDK..."
+      /home/gitpod/android-sdk/tools/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
+      /workspace/android-sdk/tools/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
+      echo "Init Flutter..."
+      cd /workspace/ha_client
+      flutter upgrade
+      flutter doctor --android-licenses
+      flutter pub get
+    command: |
+      flutter doctor
+      chromium-browser --no-sandbox
+      echo "Ready to go!"
 ports:
   - port: 9100
     onOpen: ignore
   - port: 5037
+    onOpen: ignore
+  - port: 5900
+    onOpen: ignore
+  - port: 6080
     onOpen: ignore
 vscode:
   extensions:
