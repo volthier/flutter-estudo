@@ -13,13 +13,6 @@ RUN apt-get update \
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN true \
-    	&& apt install -y \
-    		novnc \
-    		chromium
-
-ARG DEBIAN_FRONTEND=noninteractive
-
 RUN curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
     curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list && \
     apt-get -q update && \
