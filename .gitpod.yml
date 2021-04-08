@@ -20,7 +20,6 @@ tasks:
       flutter run -d web-server --no-resident
     command: |
       flutter doctor
-      chromium-browser --no-sandbox
       echo "Ready to go!"
       flutter run -d web-server --web-port=8080 --web-hostname=0.0.0.0
 ports:
